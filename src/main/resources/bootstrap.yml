@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: businessdomain-customer
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
+      name: businessdomain-customer
+      profile: ${SPRING_PROFILES_ACTIVE:dev}
+      username: ${CONFIG_SERVER_USERNAME:admin}
+      password: ${CONFIG_SERVER_PASSWORD:queryHb}
+      fail-fast: true
+      retry:
+        max-attempts: 6
+        max-interval: 10000
+        multiplier: 1.5
+      request-connect-timeout: 5000
+      request-read-timeout: 5000
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URI:http://localhost:8888}
+
+# Fallback configuration
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
