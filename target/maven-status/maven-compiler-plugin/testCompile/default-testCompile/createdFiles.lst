@@ -1,0 +1,4 @@
+com\paymentchain\customer\CustomerApplicationTests.class
+com\paymentchain\customer\entities\CustomerProductTest.class
+com\paymentchain\customer\entities\CustomerTest.class
+com\paymentchain\customer\repository\CustomerRepositoryTest.class

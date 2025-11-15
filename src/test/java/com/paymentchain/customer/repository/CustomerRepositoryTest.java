@@ -1,18 +1,41 @@
 package com.paymentchain.customer.repository;
 
+import com.paymentchain.customer.clients.ProductClient;
+import com.paymentchain.customer.clients.TransactionClient;
 import com.paymentchain.customer.entities.Customer;
 import com.paymentchain.customer.respository.CustomerRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.netty.http.client.HttpClient;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
+@TestPropertySource(properties = {
+    "spring.cloud.config.enabled=false",
+    "eureka.client.enabled=false",
+    "spring.cloud.loadbalancer.enabled=false"
+})
 class CustomerRepositoryTest {
+
+    @MockBean
+    private WebClient.Builder webClientBuilder;
+
+    @MockBean
+    private ProductClient productClient;
+
+    @MockBean
+    private TransactionClient transactionClient;
+
+    @MockBean
+    private HttpClient httpClient;
 
     @Autowired
     private TestEntityManager entityManager;

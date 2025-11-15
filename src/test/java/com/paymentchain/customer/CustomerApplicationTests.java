@@ -1,10 +1,12 @@
 package com.paymentchain.customer;
 
-import com.paymentchain.customer.config.TestConfig;
+import com.paymentchain.customer.clients.ProductClient;
+import com.paymentchain.customer.clients.TransactionClient;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
+import reactor.netty.http.client.HttpClient;
 
 @SpringBootTest(
 	webEnvironment = SpringBootTest.WebEnvironment.NONE,
@@ -14,9 +16,17 @@ import org.springframework.test.context.ActiveProfiles;
 		"spring.cloud.loadbalancer.enabled=false"
 	}
 )
-@Import(TestConfig.class)
 @ActiveProfiles("test")
 class CustomerApplicationTests {
+
+	@MockBean
+	private ProductClient productClient;
+
+	@MockBean
+	private TransactionClient transactionClient;
+
+	@MockBean
+	private HttpClient httpClient;
 
 	@Test
 	void contextLoads() {
