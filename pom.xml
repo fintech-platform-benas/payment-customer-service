@@ -82,6 +82,18 @@
         </plugins>
     </build>
 
-	<!-- Distribution Management inherited from parent POM (GitHub Packages) -->
+	<!-- GitHub Packages - publish to this repository's packages -->
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/fintech-platform-benas/payment-customer-service</url>
+		</repository>
+		<snapshotRepository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/fintech-platform-benas/payment-customer-service</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 </project>
